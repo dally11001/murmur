@@ -1,22 +1,225 @@
 /* Основные настройки страницы */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
-    color: #333;
+/* ===== Сброс и базовые настройки ===== */
+* {
     margin: 0;
     padding: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
+    box-sizing: border-box;
 }
-/* Основной заголовок */
-h1 {
-    color: #2563eb;
-    font-size: 36px;
+
+body {
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 16px;
+    color: #2d3142;
+}
+
+/* ===== Контейнер приложения ===== */
+.app {
+    background: #ffffff;
+    width: 100%;
+    max-width: 560px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+    padding: 32px;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Заголовок ===== */
+.app__header {
     text-align: center;
-    background-color: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 24px;
+}
+
+.app__title {
+    font-size: 28px;
+    color: #4a3aff;
+    margin-bottom: 6px;
+}
+
+.app__subtitle {
+    font-size: 14px;
+    color: #8d93a6;
+}
+
+/* ===== Форма добавления ===== */
+.task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.task-form__input {
+    flex: 1;
+    padding: 12px 16px;
+    font-size: 15px;
+    border: 2px solid #e3e6f0;
+    border-radius: 12px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.task-form__input:focus {
+    border-color: #4a3aff;
+}
+
+.task-form__btn {
+    padding: 12px 22px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    background: #4a3aff;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.1s;
+}
+
+.task-form__btn:hover  { background: #392ee0; }
+.task-form__btn:active { transform: scale(0.97); }
+
+/* ===== Фильтры ===== */
+.filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 18px;
+    justify-content: center;
+}
+
+.filters__btn {
+    padding: 8px 16px;
+    font-size: 13px;
+    border: none;
+    border-radius: 20px;
+    background: #eef0f7;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.filters__btn:hover {
+    background: #dde0ee;
+}
+
+.filters__btn--active {
+    background: #4a3aff;
+    color: #fff;
+}
+
+/* ===== Список задач ===== */
+.task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 380px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.task-list::-webkit-scrollbar { width: 6px; }
+.task-list::-webkit-scrollbar-thumb { background: #d0d5e5; border-radius: 3px; }
+
+.task-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    background: #f7f8fc;
+    border-radius: 12px;
+    animation: slideIn 0.25s ease;
+}
+
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+.task-item__checkbox {
+    width: 20px;
+    height: 20px;
+    accent-color: #4a3aff;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.task-item__text {
+    flex: 1;
+    font-size: 15px;
+    word-break: break-word;
+    transition: color 0.2s;
+}
+
+.task-item--done .task-item__text {
+    text-decoration: line-through;
+    color: #a0a4b8;
+}
+
+.task-item__delete {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    color: #c0c4d4;
+    cursor: pointer;
+    padding: 4px 8px;
+    border-radius: 8px;
+    transition: color 0.2s, background 0.2s;
+    flex-shrink: 0;
+}
+
+.task-item__delete:hover {
+    color: #e53935;
+    background: #ffe6e6;
+}
+
+/* ===== Пустое состояние ===== */
+.empty-message {
+    text-align: center;
+    color: #a0a4b8;
+    font-size: 14px;
+    padding: 24px 0;
+    display: none;
+}
+
+.empty-message--visible { display: block; }
+
+/* ===== Подвал ===== */
+.app__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #eef0f7;
+    font-size: 13px;
+    color: #8d93a6;
+}
+
+.clear-btn {
+    background: transparent;
+    border: none;
+    color: #e53935;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+
+.clear-btn:hover { background: #ffe6e6; }
+
+/* ===== Адаптивность ===== */
+@media (max-width: 480px) {
+    .app { padding: 20px 16px; }
+    .app__title { font-size: 22px; }
+    .task-form { flex-direction: column; }
+    .task-form__btn { width: 100%; }
 }
