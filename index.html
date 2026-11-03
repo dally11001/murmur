@@ -1,12 +1,46 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
- <meta charset="UTF-8">
- <title>Обновлено через CI/CD </title>
- <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Менеджер задач | Индивидуальный проект</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
- <h1>Привет, GitHub Actions! снова </h1>
+    <div class="app">
+        <header class="app__header">
+            <h1 class="app__title">📋 Менеджер задач</h1>
+            <p class="app__subtitle">Индивидуальный проект · ГУАП</p>
+        </header>
+
+        <form class="task-form" id="task-form">
+            <input
+                type="text"
+                class="task-form__input"
+                id="task-input"
+                placeholder="Что нужно сделать?"
+                autocomplete="off"
+                maxlength="120"
+            >
+            <button type="submit" class="task-form__btn">Добавить</button>
+        </form>
+
+        <div class="filters" role="tablist">
+            <button class="filters__btn filters__btn--active" data-filter="all">Все</button>
+            <button class="filters__btn" data-filter="active">Активные</button>
+            <button class="filters__btn" data-filter="done">Выполненные</button>
+        </div>
+
+        <ul class="task-list" id="task-list"></ul>
+
+        <p class="empty-message" id="empty-message">Список задач пуст. Добавьте первую задачу 👆</p>
+
+        <footer class="app__footer">
+            <span id="counter">Всего задач: 0</span>
+            <button class="clear-btn" id="clear-done">Удалить выполненные</button>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
